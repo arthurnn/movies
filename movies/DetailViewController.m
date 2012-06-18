@@ -3,7 +3,7 @@
 //  movies
 //
 //  Created by Arthur Neves on 12-06-14.
-//  Copyright (c) 2012 500px. All rights reserved.
+//  Copyright (c) 2012 arthurnn. All rights reserved.
 //
 
 #import "DetailViewController.h"
@@ -40,7 +40,7 @@
     // Update the user interface for the detail item.
 
     if (self.detailItem) {
-        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timeStamp"] description];
+        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timestamp"] description];
     }
 }
 

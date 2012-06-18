@@ -3,7 +3,7 @@
 //  movies
 //
 //  Created by Arthur Neves on 12-06-14.
-//  Copyright (c) 2012 500px. All rights reserved.
+//  Copyright (c) 2012 arthurnn. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -104,7 +104,7 @@
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        __managedObjectContext = [[NSManagedObjectContext alloc] init];
+        __managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
         [__managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
     return __managedObjectContext;

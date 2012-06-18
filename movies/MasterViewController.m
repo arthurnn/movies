@@ -3,15 +3,18 @@
 //  movies
 //
 //  Created by Arthur Neves on 12-06-14.
-//  Copyright (c) 2012 500px. All rights reserved.
+//  Copyright (c) 2012 arthurnn. All rights reserved.
 //
 
 #import "MasterViewController.h"
 
 #import "DetailViewController.h"
+#import "Movie.h"
+#import "AppDelegate.h"
+#import "MovieCell.h"
 
 @interface MasterViewController ()
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)configureCell:(MovieCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @implementation MasterViewController
@@ -66,16 +69,62 @@
     
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
+    [newManagedObject setValue:[NSDate date] forKey:@"timestamp"];
     
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error]) {
-         // Replace this implementation with code to handle the error appropriately.
-         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
+    [DELEGATE saveContext];
+
+    __block NSManagedObjectID *oid = newManagedObject.objectID;
+    __block NSString *avatar_url = @"http://ia.media-imdb.com/images/M/MV5BMTM2ODk0NDAwMF5BMl5BanBnXkFtZTcwNTM1MDc2Mw@@._V1_.jpg";
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        
+        NSManagedObjectContext *child = [[NSManagedObjectContext alloc]initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        [child setParentContext:self.managedObjectContext];
+        
+
+        NSData *fetchedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:avatar_url]];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
+        CGImageRef r = [self resizeImage:[UIImage imageWithData:fetchedData].CGImage];
+        
+        NSManagedObject *mo = [child objectWithID:oid];
+        
+       
+        [mo setValue: UIImageJPEGRepresentation([UIImage imageWithCGImage:r], 1) forKey:@"thumbnailData"];
+        [child save:NULL];
+        [self.managedObjectContext performBlock:^{
+            [DELEGATE saveContext];
+        }];
+
+    });
+
+}
+
+- (CGImageRef) resizeImage:(CGImageRef)originalImage
+{
+    CGColorSpaceRef colorspace = CGImageGetColorSpace(originalImage);
+    
+    CGContextRef context = CGBitmapContextCreate(NULL,
+                                                 50,
+                                                 70,
+                                                 CGImageGetBitsPerComponent(originalImage),
+                                                 CGImageGetBytesPerRow(originalImage)/CGImageGetWidth(originalImage)*50,
+                                                 colorspace,
+                                                 CGImageGetAlphaInfo(originalImage));
+    
+//    if(context == NULL)
+//        return nil;
+    
+    // Removed clipping code
+    
+    // draw image to context
+    CGContextDrawImage(context, CGContextGetClipBoundingBox(context), originalImage);
+    
+    // extract resulting image from context
+    CGImageRef imgRef = CGBitmapContextCreateImage(context);
+    
+    return imgRef;
 }
 
 #pragma mark - Table View
@@ -94,11 +143,11 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"MovieCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[MovieCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
@@ -150,6 +199,11 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
+}
+
 #pragma mark - Fetched results controller
 
 - (NSFetchedResultsController *)fetchedResultsController
@@ -160,23 +214,23 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Movie" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
     NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
-    aFetchedResultsController.delegate = self;
-    self.fetchedResultsController = aFetchedResultsController;
+    __fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
+    __fetchedResultsController.delegate = self;
+    //self.fetchedResultsController = aFetchedResultsController;
     
 	NSError *error = nil;
 	if (![self.fetchedResultsController performFetch:&error]) {
@@ -224,9 +278,12 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+        {
+//            UITableViewCell *cs = [tableView cellForRowAtIndexPath:indexPath];
+            MovieCell *c = (MovieCell *)[tableView cellForRowAtIndexPath:indexPath];
+            [self configureCell:c atIndexPath:indexPath];
             break;
-            
+        }
         case NSFetchedResultsChangeMove:
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
@@ -249,10 +306,28 @@
 }
  */
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(MovieCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+    __block Movie *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+//    cell.textLabel.text = @"The Social Network";
+//    cell.detailTextLabel.text = [object.timestamp description];
+
+//    cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        if(object.thumbnailData){
+            cell.thumbnail = [UIImage imageWithData:object.thumbnailData];
+            NSLog(@"Image size: %@", NSStringFromCGSize(cell.thumbnail.size));
+        }
+        [cell setNeedsDisplay];
+            
+//    });
+                   
+   
+    
+   
+    
 }
 
 @end

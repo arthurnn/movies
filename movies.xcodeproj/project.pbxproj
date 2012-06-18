@@ -21,6 +21,8 @@
 		A51AB56E158ACDBD00E48BD0 /* MasterViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A51AB56C158ACDBD00E48BD0 /* MasterViewController_iPad.xib */; };
 		A51AB571158ACDBD00E48BD0 /* DetailViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A51AB56F158ACDBD00E48BD0 /* DetailViewController_iPhone.xib */; };
 		A51AB574158ACDBD00E48BD0 /* DetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A51AB572158ACDBD00E48BD0 /* DetailViewController_iPad.xib */; };
+		A51AB584158AECD700E48BD0 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = A51AB583158AECD600E48BD0 /* Movie.m */; };
+		A5FEF15C158EBD8900F224D4 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FEF15A158EA5DB00F224D4 /* MovieCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,21 +31,25 @@
 		A51AB54E158ACDBD00E48BD0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A51AB550158ACDBD00E48BD0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A51AB552158ACDBD00E48BD0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		A51AB556158ACDBD00E48BD0 /* movies-Info.plist */ = {isa = PBXFileReference; path = "movies-Info.plist"; sourceTree = "<group>"; };
+		A51AB556158ACDBD00E48BD0 /* movies-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "movies-Info.plist"; sourceTree = "<group>"; };
 		A51AB558158ACDBD00E48BD0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A51AB55A158ACDBD00E48BD0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A51AB55C158ACDBD00E48BD0 /* movies-Prefix.pch */ = {isa = PBXFileReference; path = "movies-Prefix.pch"; sourceTree = "<group>"; };
-		A51AB55D158ACDBD00E48BD0 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		A51AB55C158ACDBD00E48BD0 /* movies-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "movies-Prefix.pch"; sourceTree = "<group>"; };
+		A51AB55D158ACDBD00E48BD0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A51AB55E158ACDBD00E48BD0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A51AB561158ACDBD00E48BD0 /* movies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = movies.xcdatamodel; sourceTree = "<group>"; };
-		A51AB563158ACDBD00E48BD0 /* MasterViewController.h */ = {isa = PBXFileReference; path = MasterViewController.h; sourceTree = "<group>"; };
+		A51AB563158ACDBD00E48BD0 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		A51AB564158ACDBD00E48BD0 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		A51AB566158ACDBD00E48BD0 /* DetailViewController.h */ = {isa = PBXFileReference; path = DetailViewController.h; sourceTree = "<group>"; };
+		A51AB566158ACDBD00E48BD0 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		A51AB567158ACDBD00E48BD0 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		A51AB56A158ACDBD00E48BD0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController_iPhone.xib; sourceTree = "<group>"; };
 		A51AB56D158ACDBD00E48BD0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController_iPad.xib; sourceTree = "<group>"; };
 		A51AB570158ACDBD00E48BD0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController_iPhone.xib; sourceTree = "<group>"; };
 		A51AB573158ACDBD00E48BD0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController_iPad.xib; sourceTree = "<group>"; };
+		A51AB582158AECD600E48BD0 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		A51AB583158AECD600E48BD0 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		A5FEF159158EA5DB00F224D4 /* MovieCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCell.h; sourceTree = "<group>"; };
+		A5FEF15A158EA5DB00F224D4 /* MovieCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,10 @@
 				A51AB56F158ACDBD00E48BD0 /* DetailViewController_iPhone.xib */,
 				A51AB572158ACDBD00E48BD0 /* DetailViewController_iPad.xib */,
 				A51AB560158ACDBD00E48BD0 /* movies.xcdatamodeld */,
+				A51AB582158AECD600E48BD0 /* Movie.h */,
+				A51AB583158AECD600E48BD0 /* Movie.m */,
+				A5FEF159158EA5DB00F224D4 /* MovieCell.h */,
+				A5FEF15A158EA5DB00F224D4 /* MovieCell.m */,
 				A51AB555158ACDBD00E48BD0 /* Supporting Files */,
 			);
 			path = movies;
@@ -146,7 +156,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0430;
-				ORGANIZATIONNAME = 500px;
+				ORGANIZATIONNAME = arthurnn;
 			};
 			buildConfigurationList = A51AB542158ACDBC00E48BD0 /* Build configuration list for PBXProject "movies" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -185,11 +195,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5FEF15C158EBD8900F224D4 /* MovieCell.m in Sources */,
 				A51AB55B158ACDBD00E48BD0 /* main.m in Sources */,
 				A51AB55F158ACDBD00E48BD0 /* AppDelegate.m in Sources */,
 				A51AB562158ACDBD00E48BD0 /* movies.xcdatamodeld in Sources */,
 				A51AB565158ACDBD00E48BD0 /* MasterViewController.m in Sources */,
 				A51AB568158ACDBD00E48BD0 /* DetailViewController.m in Sources */,
+				A51AB584158AECD700E48BD0 /* Movie.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +339,7 @@
 				A51AB579158ACDBD00E48BD0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
