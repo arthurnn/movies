@@ -7,9 +7,10 @@
 //
 
 #import "MovieCell.h"
+#import "UIColor+RGB.h"
+#import "Common.h"
 
-
-#define kBackgroundUnReadColor  [UIColor clearColor]
+#define kBackground  [UIColor colorWithRed:52 andGreen:52 andBlue:52 andAlpha:1]
 
 //[UIColor colorWithRed:46 andGreen:51 andBlue:64 andAlpha:1]
 //#define kBackgroundColor        [UIColor colorWithRed:28 andGreen:28 andBlue:28 andAlpha:1]
@@ -108,7 +109,7 @@ static CGRect avatarFrame = {{10, 5}, {50, 70}};
 
 -(void)drawRect:(CGRect)rect
 {
-//    [super drawRect:rect];
+    [super drawRect:rect];
 
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
@@ -118,17 +119,32 @@ static CGRect avatarFrame = {{10, 5}, {50, 70}};
 
     
     // set backgroud
-    CGContextSaveGState(ctx);
-//    if(self.read)
-//        [kBackgroundColor set];
-//    else
-        [kBackgroundUnReadColor set];
-        
-    CGContextFillRect(ctx, self.bounds);
-    CGContextRestoreGState(ctx);
+//    CGContextSaveGState(ctx);
+//    [kBackground set];
+//    CGContextFillRect(ctx, self.bounds);
+//    CGContextRestoreGState(ctx);
+// 52 -- 44
+    CGColorRef whiteColor = [UIColor colorWithRed:52 andGreen:52 andBlue:52 andAlpha:1].CGColor; 
+    CGColorRef lightGrayColor = [UIColor colorWithRed:44 andGreen:44 andBlue:44].CGColor;
+    
+    CGRect paperRect = self.bounds;
+    drawLinearGradient(ctx, paperRect, whiteColor, lightGrayColor);
+    
+    
     
     
     // set lines
+    // Add in color section
+//    CGColorRef separatorColor = [UIColor colorWithRed:208.0/255.0 green:208.0/255.0 
+//                                                 blue:208.0/255.0 alpha:1.0].CGColor;
+//    
+//    // Add at bottom
+//    CGPoint startPoint = CGPointMake(paperRect.origin.x, 
+//                                     paperRect.origin.y + paperRect.size.height - 1);
+//    CGPoint endPoint = CGPointMake(paperRect.origin.x + paperRect.size.width - 1, 
+//                                   paperRect.origin.y + paperRect.size.height - 1);
+//    draw1PxStroke(ctx, startPoint, endPoint, separatorColor);
+    
     CGContextSaveGState(ctx);
     CGContextSetLineWidth(ctx, 1.0f);
     [[[UIColor whiteColor] colorWithAlphaComponent:0.1f] setStroke];
@@ -156,13 +172,18 @@ static CGRect avatarFrame = {{10, 5}, {50, 70}};
     // left avatar
 //    [shadowImage drawInRect:CGRectMake(avatarFrame.origin.x - 4, avatarFrame.origin.y - 4, avatarFrame.size.width + 8, avatarFrame.size.height + 8)];
     CGContextSaveGState(ctx);
-    addRoundedRectToPath(ctx, avatarFrame, 5, 5);
+    addRoundedRectToPath(ctx, avatarFrame, 1, 1);
     CGContextClip(ctx);
     if (_thumbnail)
         [_thumbnail drawInRect:avatarFrame];
 //    else
 //        [_defaultUserPic drawInRect:avatarFrame];
     CGContextRestoreGState(ctx);
+    
+    CGContextSetLineWidth(ctx, 2.0f);
+    CGContextSetShadowWithColor(ctx, CGSizeZero, 5.0f, [UIColor blackColor].CGColor);
+//    ￼CGContextFillRect(ctx, avatarFrame);
+    CGContextStrokeRect(ctx, avatarFrame);
     
     
 //    if (self.isUserAvatarHighlighted)
@@ -176,6 +197,8 @@ static CGRect avatarFrame = {{10, 5}, {50, 70}};
 //    } 
     
 }
+
+
 
 inline static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWidth, float ovalHeight)
 {

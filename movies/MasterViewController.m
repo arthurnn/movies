@@ -12,6 +12,9 @@
 #import "Movie.h"
 #import "AppDelegate.h"
 #import "MovieCell.h"
+#import "UIColor+RGB.h"
+
+
 
 @interface MasterViewController ()
 - (void)configureCell:(MovieCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -23,11 +26,14 @@
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
 
+
+@synthesize searchFetchedResultsController = _searchFetchedResultsController;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Master", @"Master");
+        self.title = NSLocalizedString(@"Movies", @"Movies");
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             self.clearsSelectionOnViewWillAppear = NO;
             self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
@@ -44,6 +50,11 @@
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
+    
+    self.tableView.backgroundView = nil;
+    self.tableView.backgroundColor = [UIColor colorWithRed:15 andGreen:15 andBlue:15 andAlpha:0.5f];
+    
+    
 }
 
 - (void)viewDidUnload
@@ -74,8 +85,9 @@
     [DELEGATE saveContext];
 
     __block NSManagedObjectID *oid = newManagedObject.objectID;
-    __block NSString *avatar_url = @"http://ia.media-imdb.com/images/M/MV5BMTM2ODk0NDAwMF5BMl5BanBnXkFtZTcwNTM1MDc2Mw@@._V1_.jpg";
-    
+//    __block NSString *avatar_url = @"http://ia.media-imdb.com/images/M/MV5BMTM2ODk0NDAwMF5BMl5BanBnXkFtZTcwNTM1MDc2Mw@@._V1_.jpg";
+
+    __block NSString *avatar_url = @"http://ia.media-imdb.com/images/M/MV5BODIzMTg1NzMzN15BMl5BanBnXkFtZTYwMTUyMzk5._V1_.jpg";
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         
@@ -323,11 +335,47 @@
         [cell setNeedsDisplay];
             
 //    });
-                   
-   
     
-   
+}
+
+#pragma mark -
+#pragma mark Content Filtering
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSInteger)scope
+{
+    // update the filter, in this case just blow away the FRC and let lazy evaluation create another with the relevant search info
+    self.searchFetchedResultsController.delegate = nil;
+    self.searchFetchedResultsController = nil;
+    // if you care about the scope save off the index to be used by the serchFetchedResultsController
+    //self.savedScopeButtonIndex = scope;
+}
+
+
+#pragma mark -
+#pragma mark Search Bar 
+- (void)searchDisplayController:(UISearchDisplayController *)controller willUnloadSearchResultsTableView:(UITableView *)tableView;
+{
+    // search is done so get rid of the search FRC and reclaim memory
+    self.searchFetchedResultsController.delegate = nil;
+    self.searchFetchedResultsController = nil;
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString 
+                               scope:[self.searchDisplayController.searchBar selectedScopeButtonIndex]];
     
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    [self filterContentForSearchText:[self.searchDisplayController.searchBar text] 
+                               scope:[self.searchDisplayController.searchBar selectedScopeButtonIndex]];
+    
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
 }
 
 @end

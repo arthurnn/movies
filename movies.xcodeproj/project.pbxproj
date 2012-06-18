@@ -23,6 +23,9 @@
 		A51AB574158ACDBD00E48BD0 /* DetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A51AB572158ACDBD00E48BD0 /* DetailViewController_iPad.xib */; };
 		A51AB584158AECD700E48BD0 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = A51AB583158AECD600E48BD0 /* Movie.m */; };
 		A5FEF15C158EBD8900F224D4 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FEF15A158EA5DB00F224D4 /* MovieCell.m */; };
+		A5FEF163158EDD1E00F224D4 /* UIColor+RGB.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FEF162158EDCDD00F224D4 /* UIColor+RGB.m */; };
+		A5FEF166158EDF6C00F224D4 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FEF165158EDEEA00F224D4 /* Common.m */; };
+		A5FEF16C158EE7C200F224D4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FEF16B158EE7C200F224D4 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,11 @@
 		A51AB583158AECD600E48BD0 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		A5FEF159158EA5DB00F224D4 /* MovieCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCell.h; sourceTree = "<group>"; };
 		A5FEF15A158EA5DB00F224D4 /* MovieCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCell.m; sourceTree = "<group>"; };
+		A5FEF161158EDCDD00F224D4 /* UIColor+RGB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+RGB.h"; sourceTree = "<group>"; };
+		A5FEF162158EDCDD00F224D4 /* UIColor+RGB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RGB.m"; sourceTree = "<group>"; };
+		A5FEF164158EDEE900F224D4 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		A5FEF165158EDEEA00F224D4 /* Common.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
+		A5FEF16B158EE7C200F224D4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5FEF16C158EE7C200F224D4 /* QuartzCore.framework in Frameworks */,
 				A51AB54D158ACDBD00E48BD0 /* UIKit.framework in Frameworks */,
 				A51AB54F158ACDBD00E48BD0 /* Foundation.framework in Frameworks */,
 				A51AB551158ACDBD00E48BD0 /* CoreGraphics.framework in Frameworks */,
@@ -87,6 +96,7 @@
 		A51AB54B158ACDBD00E48BD0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A5FEF16B158EE7C200F224D4 /* QuartzCore.framework */,
 				A51AB54C158ACDBD00E48BD0 /* UIKit.framework */,
 				A51AB54E158ACDBD00E48BD0 /* Foundation.framework */,
 				A51AB550158ACDBD00E48BD0 /* CoreGraphics.framework */,
@@ -113,6 +123,10 @@
 				A51AB583158AECD600E48BD0 /* Movie.m */,
 				A5FEF159158EA5DB00F224D4 /* MovieCell.h */,
 				A5FEF15A158EA5DB00F224D4 /* MovieCell.m */,
+				A5FEF161158EDCDD00F224D4 /* UIColor+RGB.h */,
+				A5FEF162158EDCDD00F224D4 /* UIColor+RGB.m */,
+				A5FEF164158EDEE900F224D4 /* Common.h */,
+				A5FEF165158EDEEA00F224D4 /* Common.m */,
 				A51AB555158ACDBD00E48BD0 /* Supporting Files */,
 			);
 			path = movies;
@@ -195,6 +209,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5FEF166158EDF6C00F224D4 /* Common.m in Sources */,
+				A5FEF163158EDD1E00F224D4 /* UIColor+RGB.m in Sources */,
 				A5FEF15C158EBD8900F224D4 /* MovieCell.m in Sources */,
 				A51AB55B158ACDBD00E48BD0 /* main.m in Sources */,
 				A51AB55F158ACDBD00E48BD0 /* AppDelegate.m in Sources */,
