@@ -11,6 +11,7 @@
 
 @implementation Movie
 
+@dynamic name;
 @dynamic thumbnailData;
 @dynamic thumbnailUrl;
 @dynamic timestamp;

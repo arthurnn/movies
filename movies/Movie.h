@@ -12,6 +12,7 @@
 
 @interface Movie : NSManagedObject
 
+@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSData * thumbnailData;
 @property (nonatomic, retain) NSString * thumbnailUrl;
 @property (nonatomic, retain) NSDate * timestamp;

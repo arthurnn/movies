@@ -12,15 +12,23 @@
 
 #import <CoreData/CoreData.h>
 
-@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface MasterViewController : UITableViewController
+<UISearchBarDelegate, NSFetchedResultsControllerDelegate, UISearchDisplayDelegate> 
+{
+//    __weak IBOutlet UISearchBar * searchBar;
+}
+
+@property (strong, nonatomic) IBOutlet UISearchDisplayController *searchDisplayController;
+@property (nonatomic, retain) NSFetchedResultsController *searchFetchedResultsController;
+
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-@property (nonatomic, retain) NSFetchedResultsController *searchFetchedResultsController;
-@property (nonatomic, retain) UISearchDisplayController *mySearchDisplayController;
+
+
 
 
 @end

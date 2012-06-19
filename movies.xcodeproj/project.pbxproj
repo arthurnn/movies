@@ -14,7 +14,6 @@
 		A51AB559158ACDBD00E48BD0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A51AB557158ACDBD00E48BD0 /* InfoPlist.strings */; };
 		A51AB55B158ACDBD00E48BD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A51AB55A158ACDBD00E48BD0 /* main.m */; };
 		A51AB55F158ACDBD00E48BD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A51AB55E158ACDBD00E48BD0 /* AppDelegate.m */; };
-		A51AB562158ACDBD00E48BD0 /* movies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A51AB560158ACDBD00E48BD0 /* movies.xcdatamodeld */; };
 		A51AB565158ACDBD00E48BD0 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A51AB564158ACDBD00E48BD0 /* MasterViewController.m */; };
 		A51AB568158ACDBD00E48BD0 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A51AB567158ACDBD00E48BD0 /* DetailViewController.m */; };
 		A51AB56B158ACDBD00E48BD0 /* MasterViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A51AB569158ACDBD00E48BD0 /* MasterViewController_iPhone.xib */; };
@@ -22,6 +21,7 @@
 		A51AB571158ACDBD00E48BD0 /* DetailViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A51AB56F158ACDBD00E48BD0 /* DetailViewController_iPhone.xib */; };
 		A51AB574158ACDBD00E48BD0 /* DetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A51AB572158ACDBD00E48BD0 /* DetailViewController_iPad.xib */; };
 		A51AB584158AECD700E48BD0 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = A51AB583158AECD600E48BD0 /* Movie.m */; };
+		A532074915902A8400710DDF /* movies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A532074715902A8400710DDF /* movies.xcdatamodeld */; };
 		A5FEF15C158EBD8900F224D4 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FEF15A158EA5DB00F224D4 /* MovieCell.m */; };
 		A5FEF163158EDD1E00F224D4 /* UIColor+RGB.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FEF162158EDCDD00F224D4 /* UIColor+RGB.m */; };
 		A5FEF166158EDF6C00F224D4 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FEF165158EDEEA00F224D4 /* Common.m */; };
@@ -40,7 +40,6 @@
 		A51AB55C158ACDBD00E48BD0 /* movies-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "movies-Prefix.pch"; sourceTree = "<group>"; };
 		A51AB55D158ACDBD00E48BD0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A51AB55E158ACDBD00E48BD0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A51AB561158ACDBD00E48BD0 /* movies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = movies.xcdatamodel; sourceTree = "<group>"; };
 		A51AB563158ACDBD00E48BD0 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		A51AB564158ACDBD00E48BD0 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		A51AB566158ACDBD00E48BD0 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -51,6 +50,8 @@
 		A51AB573158ACDBD00E48BD0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController_iPad.xib; sourceTree = "<group>"; };
 		A51AB582158AECD600E48BD0 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		A51AB583158AECD600E48BD0 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		A532074815902A8400710DDF /* movies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = movies.xcdatamodel; sourceTree = "<group>"; };
+		A532074A15902B0800710DDF /* movies 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "movies 2.xcdatamodel"; sourceTree = "<group>"; };
 		A5FEF159158EA5DB00F224D4 /* MovieCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCell.h; sourceTree = "<group>"; };
 		A5FEF15A158EA5DB00F224D4 /* MovieCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCell.m; sourceTree = "<group>"; };
 		A5FEF161158EDCDD00F224D4 /* UIColor+RGB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+RGB.h"; sourceTree = "<group>"; };
@@ -118,7 +119,6 @@
 				A51AB56C158ACDBD00E48BD0 /* MasterViewController_iPad.xib */,
 				A51AB56F158ACDBD00E48BD0 /* DetailViewController_iPhone.xib */,
 				A51AB572158ACDBD00E48BD0 /* DetailViewController_iPad.xib */,
-				A51AB560158ACDBD00E48BD0 /* movies.xcdatamodeld */,
 				A51AB582158AECD600E48BD0 /* Movie.h */,
 				A51AB583158AECD600E48BD0 /* Movie.m */,
 				A5FEF159158EA5DB00F224D4 /* MovieCell.h */,
@@ -127,6 +127,7 @@
 				A5FEF162158EDCDD00F224D4 /* UIColor+RGB.m */,
 				A5FEF164158EDEE900F224D4 /* Common.h */,
 				A5FEF165158EDEEA00F224D4 /* Common.m */,
+				A532074715902A8400710DDF /* movies.xcdatamodeld */,
 				A51AB555158ACDBD00E48BD0 /* Supporting Files */,
 			);
 			path = movies;
@@ -214,10 +215,10 @@
 				A5FEF15C158EBD8900F224D4 /* MovieCell.m in Sources */,
 				A51AB55B158ACDBD00E48BD0 /* main.m in Sources */,
 				A51AB55F158ACDBD00E48BD0 /* AppDelegate.m in Sources */,
-				A51AB562158ACDBD00E48BD0 /* movies.xcdatamodeld in Sources */,
 				A51AB565158ACDBD00E48BD0 /* MasterViewController.m in Sources */,
 				A51AB568158ACDBD00E48BD0 /* DetailViewController.m in Sources */,
 				A51AB584158AECD700E48BD0 /* Movie.m in Sources */,
+				A532074915902A8400710DDF /* movies.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,12 +361,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		A51AB560158ACDBD00E48BD0 /* movies.xcdatamodeld */ = {
+		A532074715902A8400710DDF /* movies.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				A51AB561158ACDBD00E48BD0 /* movies.xcdatamodel */,
+				A532074A15902B0800710DDF /* movies 2.xcdatamodel */,
+				A532074815902A8400710DDF /* movies.xcdatamodel */,
 			);
-			currentVersion = A51AB561158ACDBD00E48BD0 /* movies.xcdatamodel */;
+			currentVersion = A532074A15902B0800710DDF /* movies 2.xcdatamodel */;
 			path = movies.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

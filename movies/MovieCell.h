@@ -20,7 +20,8 @@
 {
 }
 
-//@property (nonatomic, strong) NSString * timestamp;
+@property (nonatomic, strong) NSString * name;
+@property (nonatomic, strong) NSString * timestamp;
 @property (nonatomic, strong) UIImage * thumbnail;
 
            

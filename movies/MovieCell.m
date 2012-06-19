@@ -28,7 +28,7 @@
 
 //@synthesize isActionHighlighted=_isActionHighlighted, isUserAvatarHighlighted=_isUserAvatarHighlighted;
 //@synthesize uiAdpter=_uiAdpter, avatar=_avatar, actionImage=_actionImage,actionLabel=_actionLabel, read=_read;
-@synthesize thumbnail=_thumbnail ; //,timestamp=_timestamp;
+@synthesize name=_name, thumbnail=_thumbnail, timestamp=_timestamp;
 
 // max width for cell: 330
 static CGRect avatarFrame = {{10, 5}, {50, 70}};
@@ -160,14 +160,31 @@ static CGRect avatarFrame = {{10, 5}, {50, 70}};
     
     
     // set date label
-//    CGContextSaveGState(ctx);
-//    [[UIColor lightGrayColor] set];
-//    
-//    CGSize fromSize = [timestamp sizeWithFont:[UIFont systemFontOfSize:14]];
-//    float yPos = (70 - self.actionLabel.frame.size.height - fromSize.height) / 2; 
-//    CGRect frame = CGRectMake(70, yPos+self.actionLabel.frame.size.height, 220, fromSize.height);
-//    [[self.uiAdpter timeLabel] drawInRect:frame withFont:[UIFont systemFontOfSize:14]];
-//    CGContextRestoreGState(ctx);
+    CGContextSaveGState(ctx);
+    [[UIColor whiteColor] set];
+    
+    
+    CGSize size = [_name sizeWithFont:[UIFont boldSystemFontOfSize:16]];
+//    float yPos = (self.bounds.size.height - fromSize.height) / 2; 
+    float y = 10;
+    CGRect frame = CGRectMake(70, y, 220, size.height);
+    [_name drawInRect:frame withFont:[UIFont boldSystemFontOfSize:16]];
+    
+    [[UIColor lightGrayColor] set];
+    size = [_timestamp sizeWithFont:[UIFont systemFontOfSize:14]];
+//    float yPos = (self.bounds.size.height - fromSize.height) / 2; 
+    y = 35;
+    frame = CGRectMake(70, y, 220, size.height);
+    [_timestamp drawInRect:frame withFont:[UIFont systemFontOfSize:14]];
+    
+    
+    
+    CGContextRestoreGState(ctx);
+    
+
+    
+    
+    
     
     // left avatar
 //    [shadowImage drawInRect:CGRectMake(avatarFrame.origin.x - 4, avatarFrame.origin.y - 4, avatarFrame.size.width + 8, avatarFrame.size.height + 8)];

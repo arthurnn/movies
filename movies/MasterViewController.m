@@ -22,12 +22,14 @@
 
 @implementation MasterViewController
 
+@synthesize searchDisplayController;
+@synthesize searchFetchedResultsController;
 @synthesize detailViewController = _detailViewController;
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
 
 
-@synthesize searchFetchedResultsController = _searchFetchedResultsController;
+//@synthesize searchFetchedResultsController = _searchFetchedResultsController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,11 +56,24 @@
     self.tableView.backgroundView = nil;
     self.tableView.backgroundColor = [UIColor colorWithRed:15 andGreen:15 andBlue:15 andAlpha:0.5f];
     
+    self.searchDisplayController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.searchDisplayController.searchResultsTableView.backgroundColor = nil;
+    self.searchDisplayController.searchResultsTableView.backgroundColor = [UIColor colorWithRed:15 andGreen:15 andBlue:15 andAlpha:0.5f];
+    
+//    searchBar.tintColor = [UIColor colorWithRed:15 andGreen:15 andBlue:15 andAlpha:0.5f];
+    
+//    UISearchBar *tempSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, -44, self.view.frame.size.width, 44)];
+////    tempSearchBar.delegate = self;
+//    tempSearchBar.autoresizingMask = UIViewAutoresizingNone;
+//    searchBar = tempSearchBar;
+//    searchBar.placeholder = @"Search";
+//    [self.view addSubview:tempSearchBar]; 
     
 }
 
 - (void)viewDidUnload
 {
+    [self setSearchDisplayController:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -81,13 +96,14 @@
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
     [newManagedObject setValue:[NSDate date] forKey:@"timestamp"];
+    [newManagedObject setValue:@"The Social Network" forKey:@"name"];
     
     [DELEGATE saveContext];
 
     __block NSManagedObjectID *oid = newManagedObject.objectID;
-//    __block NSString *avatar_url = @"http://ia.media-imdb.com/images/M/MV5BMTM2ODk0NDAwMF5BMl5BanBnXkFtZTcwNTM1MDc2Mw@@._V1_.jpg";
+    __block NSString *avatar_url = @"http://ia.media-imdb.com/images/M/MV5BMTM2ODk0NDAwMF5BMl5BanBnXkFtZTcwNTM1MDc2Mw@@._V1_.jpg";
 
-    __block NSString *avatar_url = @"http://ia.media-imdb.com/images/M/MV5BODIzMTg1NzMzN15BMl5BanBnXkFtZTYwMTUyMzk5._V1_.jpg";
+//    __block NSString *avatar_url = @"http://ia.media-imdb.com/images/M/MV5BODIzMTg1NzMzN15BMl5BanBnXkFtZTYwMTUyMzk5._V1_.jpg";
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         
@@ -218,6 +234,11 @@
 
 #pragma mark - Fetched results controller
 
+- (NSFetchedResultsController *)fetchedResultsControllerForTableView:(UITableView *)tableView
+{
+    return tableView == self.tableView ? self.fetchedResultsController : self.searchFetchedResultsController;
+}
+
 - (NSFetchedResultsController *)fetchedResultsController
 {
     if (__fetchedResultsController != nil) {
@@ -263,13 +284,16 @@
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
+    
+    UITableView *tableView = controller == self.fetchedResultsController ? self.tableView : self.searchDisplayController.searchResultsTableView;
+
     switch(type) {
         case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
@@ -278,7 +302,9 @@
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath
 {
-    UITableView *tableView = self.tableView;
+//    UITableView *tableView = self.tableView;
+    UITableView *tableView = controller == self.fetchedResultsController ? self.tableView : self.searchDisplayController.searchResultsTableView;
+
     
     switch(type) {
         case NSFetchedResultsChangeInsert:
@@ -321,24 +347,18 @@
 - (void)configureCell:(MovieCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     __block Movie *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-//    cell.textLabel.text = @"The Social Network";
-//    cell.detailTextLabel.text = [object.timestamp description];
-
-//    cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    cell.timestamp = [object.timestamp description];
+    cell.name = object.name;
     
-//    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        if(object.thumbnailData){
-            cell.thumbnail = [UIImage imageWithData:object.thumbnailData];
-            NSLog(@"Image size: %@", NSStringFromCGSize(cell.thumbnail.size));
-        }
-        [cell setNeedsDisplay];
+    if(object.thumbnailData){
+        cell.thumbnail = [UIImage imageWithData:object.thumbnailData];
+        NSLog(@"Image size: %@", NSStringFromCGSize(cell.thumbnail.size));
+    }
+    [cell setNeedsDisplay];
             
-//    });
     
 }
 
-#pragma mark -
 #pragma mark Content Filtering
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSInteger)scope
 {
@@ -377,5 +397,4 @@
     // Return YES to cause the search result table view to be reloaded.
     return YES;
 }
-
 @end
