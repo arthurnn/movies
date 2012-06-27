@@ -28,7 +28,7 @@
 @implementation MasterViewController
 
 @synthesize searchDisplayController;
-//@synthesize searchFetchedResultsController;
+@synthesize searchBar;
 @synthesize detailViewController = _detailViewController;
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
@@ -62,7 +62,7 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:15 andGreen:15 andBlue:15 andAlpha:0.5f];
     
 
-    
+    self.searchBar.tintColor = [UIColor colorWithRed:15 andGreen:15 andBlue:15 andAlpha:0.9f];
     
 //    NSFetchRequest *fetchRequest =  self.fetchedResultsController.fetchRequest;
 //    

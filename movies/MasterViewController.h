@@ -19,6 +19,7 @@
 }
 
 @property (strong, nonatomic) IBOutlet UISearchDisplayController *searchDisplayController;
+@property (strong, nonatomic) IBOutlet UISearchBar * searchBar;
 //@property (nonatomic, retain) NSFetchedResultsController *searchFetchedResultsController;
 
 
