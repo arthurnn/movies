@@ -15,4 +15,6 @@
     #import <QuartzCore/QuartzCore.h>
 #endif
 
+#import "AppDelegate.h"
+
 #define DELEGATE (AppDelegate*)[[UIApplication sharedApplication] delegate]

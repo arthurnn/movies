@@ -124,8 +124,8 @@ static CGRect avatarFrame = {{10, 5}, {50, 70}};
 //    CGContextFillRect(ctx, self.bounds);
 //    CGContextRestoreGState(ctx);
 // 52 -- 44
-    CGColorRef whiteColor = [UIColor colorWithRed:52 andGreen:52 andBlue:52 andAlpha:1].CGColor; 
-    CGColorRef lightGrayColor = [UIColor colorWithRed:44 andGreen:44 andBlue:44].CGColor;
+    UIColor * whiteColor = [UIColor colorWithRed:52 andGreen:52 andBlue:52 andAlpha:1]; 
+    UIColor * lightGrayColor = [UIColor colorWithRed:44 andGreen:44 andBlue:44];
     
     CGRect paperRect = self.bounds;
     drawLinearGradient(ctx, paperRect, whiteColor, lightGrayColor);

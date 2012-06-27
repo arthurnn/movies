@@ -19,7 +19,7 @@
 }
 
 @property (strong, nonatomic) IBOutlet UISearchDisplayController *searchDisplayController;
-@property (nonatomic, retain) NSFetchedResultsController *searchFetchedResultsController;
+//@property (nonatomic, retain) NSFetchedResultsController *searchFetchedResultsController;
 
 
 @property (strong, nonatomic) DetailViewController *detailViewController;

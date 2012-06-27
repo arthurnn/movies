@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface DetailViewController : UIViewController 
+<UISplitViewControllerDelegate,UIScrollViewDelegate>
 
 @property (strong, nonatomic) id detailItem;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIImageView *poster;
+
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+
+- (IBAction)watchedTap:(id)sender;
 
 @end
