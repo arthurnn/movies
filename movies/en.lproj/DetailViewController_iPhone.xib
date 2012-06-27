@@ -55,7 +55,7 @@
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUIView" id="251473071">
 								<reference key="NSNextResponder" ref="37402110"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">308</int>
 								<array class="NSMutableArray" key="NSSubviews">
 									<object class="IBUIButton" id="795553030">
 										<reference key="NSNextResponder" ref="251473071"/>
@@ -99,6 +99,7 @@
 										<string key="NSFrame">{{180, 188}, {120, 60}}</string>
 										<reference key="NSSuperview" ref="251473071"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -116,7 +117,7 @@
 										<reference key="IBUIFont" ref="549008056"/>
 									</object>
 								</array>
-								<string key="NSFrame">{{0, 220}, {320, 300}}</string>
+								<string key="NSFrame">{{0, 220}, {320, 480}}</string>
 								<reference key="NSSuperview" ref="37402110"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="795553030"/>

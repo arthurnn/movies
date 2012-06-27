@@ -43,9 +43,6 @@
 - (void)configureView
 {
     // Update the user interface for the detail item.
-    CGRect f = self.view.frame;
-    f.size.height = 1000;
-    self.view.frame = f;
     if (self.detailItem) {
         self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timestamp"] description];
         self.poster.image = [UIImage imageWithData:[self.detailItem valueForKey:@"thumbnailData"]];

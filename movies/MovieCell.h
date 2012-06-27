@@ -8,14 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
-//@protocol PXNotificationCellDelegate <NSObject>
-//
-//-(void)didTapThumbnail:(UITableViewCell*)cell;
-//
-//@end
-
-
 @interface MovieCell : UITableViewCell
 {
 }
