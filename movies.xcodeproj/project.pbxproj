@@ -22,6 +22,10 @@
 		A51AB574158ACDBD00E48BD0 /* DetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A51AB572158ACDBD00E48BD0 /* DetailViewController_iPad.xib */; };
 		A51AB584158AECD700E48BD0 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = A51AB583158AECD600E48BD0 /* Movie.m */; };
 		A532074915902A8400710DDF /* movies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A532074715902A8400710DDF /* movies.xcdatamodeld */; };
+		A5DB68BC159BEDB3006CCFE3 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A5DB68BA159BEDB3006CCFE3 /* bg.png */; };
+		A5DB68BD159BEDB3006CCFE3 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5DB68BB159BEDB3006CCFE3 /* bg@2x.png */; };
+		A5DB68E2159D42F5006CCFE3 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB68E0159D42F5006CCFE3 /* ShareViewController.m */; };
+		A5DB68E3159D42F5006CCFE3 /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5DB68E1159D42F5006CCFE3 /* ShareViewController.xib */; };
 		A5FEF15C158EBD8900F224D4 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FEF15A158EA5DB00F224D4 /* MovieCell.m */; };
 		A5FEF163158EDD1E00F224D4 /* UIColor+RGB.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FEF162158EDCDD00F224D4 /* UIColor+RGB.m */; };
 		A5FEF166158EDF6C00F224D4 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FEF165158EDEEA00F224D4 /* Common.m */; };
@@ -52,6 +56,11 @@
 		A51AB583158AECD600E48BD0 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		A532074815902A8400710DDF /* movies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = movies.xcdatamodel; sourceTree = "<group>"; };
 		A532074A15902B0800710DDF /* movies 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "movies 2.xcdatamodel"; sourceTree = "<group>"; };
+		A5DB68BA159BEDB3006CCFE3 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		A5DB68BB159BEDB3006CCFE3 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
+		A5DB68DF159D42F5006CCFE3 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		A5DB68E0159D42F5006CCFE3 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		A5DB68E1159D42F5006CCFE3 /* ShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareViewController.xib; sourceTree = "<group>"; };
 		A5FEF159158EA5DB00F224D4 /* MovieCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCell.h; sourceTree = "<group>"; };
 		A5FEF15A158EA5DB00F224D4 /* MovieCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCell.m; sourceTree = "<group>"; };
 		A5FEF161158EDCDD00F224D4 /* UIColor+RGB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+RGB.h"; sourceTree = "<group>"; };
@@ -119,6 +128,9 @@
 				A51AB56C158ACDBD00E48BD0 /* MasterViewController_iPad.xib */,
 				A51AB56F158ACDBD00E48BD0 /* DetailViewController_iPhone.xib */,
 				A51AB572158ACDBD00E48BD0 /* DetailViewController_iPad.xib */,
+				A5DB68DF159D42F5006CCFE3 /* ShareViewController.h */,
+				A5DB68E0159D42F5006CCFE3 /* ShareViewController.m */,
+				A5DB68E1159D42F5006CCFE3 /* ShareViewController.xib */,
 				A51AB582158AECD600E48BD0 /* Movie.h */,
 				A51AB583158AECD600E48BD0 /* Movie.m */,
 				A5FEF159158EA5DB00F224D4 /* MovieCell.h */,
@@ -127,6 +139,8 @@
 				A5FEF162158EDCDD00F224D4 /* UIColor+RGB.m */,
 				A5FEF164158EDEE900F224D4 /* Common.h */,
 				A5FEF165158EDEEA00F224D4 /* Common.m */,
+				A5DB68BA159BEDB3006CCFE3 /* bg.png */,
+				A5DB68BB159BEDB3006CCFE3 /* bg@2x.png */,
 				A532074715902A8400710DDF /* movies.xcdatamodeld */,
 				A51AB555158ACDBD00E48BD0 /* Supporting Files */,
 			);
@@ -200,6 +214,9 @@
 				A51AB56E158ACDBD00E48BD0 /* MasterViewController_iPad.xib in Resources */,
 				A51AB571158ACDBD00E48BD0 /* DetailViewController_iPhone.xib in Resources */,
 				A51AB574158ACDBD00E48BD0 /* DetailViewController_iPad.xib in Resources */,
+				A5DB68BC159BEDB3006CCFE3 /* bg.png in Resources */,
+				A5DB68BD159BEDB3006CCFE3 /* bg@2x.png in Resources */,
+				A5DB68E3159D42F5006CCFE3 /* ShareViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +236,7 @@
 				A51AB568158ACDBD00E48BD0 /* DetailViewController.m in Sources */,
 				A51AB584158AECD700E48BD0 /* Movie.m in Sources */,
 				A532074915902A8400710DDF /* movies.xcdatamodeld in Sources */,
+				A5DB68E2159D42F5006CCFE3 /* ShareViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

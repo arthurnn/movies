@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 arthurnn. All rights reserved.
 //
 
+#import "ShareViewController.h"
 #import "DetailViewController.h"
 
 @interface DetailViewController ()
@@ -109,21 +110,16 @@
 		
 - (IBAction)watchedTap:(id)sender
 {
-//    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-//    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Movie" inManagedObjectContext:[DELEGATE managedObjectContext]];
+//    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:[DELEGATE managedObjectContext]];
+//    
+//    [newManagedObject setValue:[NSDate date] forKey:@"timestamp"];
+//    [newManagedObject setValue:[self.detailItem valueForKey:@"name"] forKey:@"name"];
+//    [newManagedObject setValue:[self.detailItem valueForKey:@"thumbnailData"] forKey:@"thumbnailData"];
+//    
+//    [DELEGATE saveContext];
     
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Movie" inManagedObjectContext:[DELEGATE managedObjectContext]];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:[DELEGATE managedObjectContext]];
-    
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timestamp"];
-    
-    [newManagedObject setValue:[self.detailItem valueForKey:@"name"] forKey:@"name"];
-    [newManagedObject setValue:[self.detailItem valueForKey:@"thumbnailData"] forKey:@"thumbnailData"];
-    
-    [DELEGATE saveContext];
-    
+//    ShareViewController
     
 }
 
