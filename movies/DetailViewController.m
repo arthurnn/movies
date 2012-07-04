@@ -120,8 +120,9 @@
 //    [DELEGATE saveContext];
     
     ShareViewController *vc = [[ShareViewController alloc] initWithNibName:@"ShareViewController_iPhone" bundle:nil];
-    
-    [self presentModalViewController:vc animated:YES];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    nc.navigationBar.barStyle = UIBarStyleBlack;
+    [self presentModalViewController:nc animated:YES];
 }
 
 #pragma mark - Split view
