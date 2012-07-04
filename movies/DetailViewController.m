@@ -119,8 +119,9 @@
 //    
 //    [DELEGATE saveContext];
     
-//    ShareViewController
+    ShareViewController *vc = [[ShareViewController alloc] initWithNibName:@"ShareViewController_iPhone" bundle:nil];
     
+    [self presentModalViewController:vc animated:YES];
 }
 
 #pragma mark - Split view
