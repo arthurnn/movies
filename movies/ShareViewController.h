@@ -10,4 +10,6 @@
 
 @interface ShareViewController : UITableViewController
 
+@property (strong, nonatomic) id detailItem;
+
 @end

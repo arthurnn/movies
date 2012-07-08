@@ -84,16 +84,15 @@ static CGRect avatarFrame = {{10, 5}, {50, 70}};
     y = 35;
     frame = CGRectMake(70, y, 220, size.height);
     [_timestamp drawInRect:frame withFont:[UIFont systemFontOfSize:14]];
-    
-    
-    
     CGContextRestoreGState(ctx);
     
-    CGContextSaveGState(ctx);
-    CGContextClip(ctx);
     if (_thumbnail)
+    {
+        CGContextSaveGState(ctx);
         [_thumbnail drawInRect:avatarFrame];
-    CGContextRestoreGState(ctx);
+        CGContextRestoreGState(ctx);
+    }
+
     
     CGContextSetLineWidth(ctx, 2.0f);
     CGContextSetShadowWithColor(ctx, CGSizeZero, 5.0f, [UIColor blackColor].CGColor);

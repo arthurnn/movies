@@ -2,7 +2,7 @@
 //  Movie.m
 //  movies
 //
-//  Created by Arthur Neves on 12-06-15.
+//  Created by Arthur Neves on 12-07-08.
 //  Copyright (c) 2012 arthurnn. All rights reserved.
 //
 
@@ -15,5 +15,7 @@
 @dynamic thumbnailData;
 @dynamic thumbnailUrl;
 @dynamic timestamp;
+@dynamic watched;
+@dynamic wanted;
 
 @end

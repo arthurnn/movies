@@ -29,7 +29,7 @@
 
 - (void)setDetailItem:(id)newDetailItem
 {
-    if (_detailItem != newDetailItem) {
+    if (_detailItem != newDetailItem || ![_detailItem valueForKey:@"thumbnailData"]) {
         _detailItem = newDetailItem;
         
         // Update the view.
@@ -65,13 +65,6 @@
 //    _tableView.tableHeaderView = tableHeaderView;
     [self.scrollView addSubview:tableHeaderView];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.navigationController.navigationBar.translucent = YES;
-//        self.navigationController.navigationBar.hidden = YES;
-    });
-    
-    
-    
     _headerImageYOffset = -50.0;
     CGRect headerImageFrame = self.poster.frame;
     headerImageFrame.origin.y = _headerImageYOffset;
@@ -88,6 +81,13 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     self.detailDescriptionLabel = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.navigationController.navigationBar.translucent = YES;
+    });
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -110,16 +110,9 @@
 		
 - (IBAction)watchedTap:(id)sender
 {
-//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Movie" inManagedObjectContext:[DELEGATE managedObjectContext]];
-//    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:[DELEGATE managedObjectContext]];
-//    
-//    [newManagedObject setValue:[NSDate date] forKey:@"timestamp"];
-//    [newManagedObject setValue:[self.detailItem valueForKey:@"name"] forKey:@"name"];
-//    [newManagedObject setValue:[self.detailItem valueForKey:@"thumbnailData"] forKey:@"thumbnailData"];
-//    
-//    [DELEGATE saveContext];
-    
     ShareViewController *vc = [[ShareViewController alloc] initWithNibName:@"ShareViewController_iPhone" bundle:nil];
+    vc.detailItem = self.detailItem;
+    
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     nc.navigationBar.barStyle = UIBarStyleBlack;
     [self presentModalViewController:nc animated:YES];

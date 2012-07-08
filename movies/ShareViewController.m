@@ -14,6 +14,8 @@
 
 @implementation ShareViewController
 
+@synthesize detailItem;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -34,11 +36,25 @@
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelTap)];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveTap)];
 }
 
 -(void)cancelTap
 {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)saveTap
+{
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Movie" inManagedObjectContext:[DELEGATE managedObjectContext]];
+    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:[DELEGATE managedObjectContext]];
+    
+    [newManagedObject setValue:[NSDate date] forKey:@"timestamp"];
+    [newManagedObject setValue:[self.detailItem valueForKey:@"name"] forKey:@"name"];
+    [newManagedObject setValue:[self.detailItem valueForKey:@"thumbnailData"] forKey:@"thumbnailData"];
+    [newManagedObject setValue:[NSNumber numberWithBool:YES] forKey:@"watched"];
+    [DELEGATE saveContext];    
 }
 
 - (void)viewDidUnload

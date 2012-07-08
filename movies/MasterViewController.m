@@ -53,16 +53,17 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    // self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-//    self.navigationItem.rightBarButtonItem = addButton;
+
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
+    self.navigationItem.rightBarButtonItem = addButton;
     
     self.tableView.backgroundView = nil;
     self.tableView.backgroundColor = [UIColor colorWithRed:15 andGreen:15 andBlue:15 andAlpha:0.5f];
     
-
-    self.searchBar.tintColor = [UIColor colorWithRed:15 andGreen:15 andBlue:15 andAlpha:0.9f];
+    [self.tableView setContentOffset:CGPointMake(0,self.searchDisplayController.searchBar.frame.size.height)];
+//    self.searchBar.tintColor = [UIColor colorWithRed:15 andGreen:15 andBlue:15 andAlpha:0.9f];
     
 //    NSFetchRequest *fetchRequest =  self.fetchedResultsController.fetchRequest;
 //    
@@ -88,6 +89,13 @@
     // Release any retained subviews of the main view.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.navigationController.navigationBar.translucent = NO;
+    });
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
@@ -97,7 +105,10 @@
     }
 }
 
-
+-(void)insertNewObject
+{
+    [searchBar becomeFirstResponder];
+}
 
 - (CGImageRef) resizeImage:(CGImageRef)originalImage
 {
@@ -111,8 +122,8 @@
                                                  colorspace,
                                                  CGImageGetAlphaInfo(originalImage));
     
-//    if(context == NULL)
-//        return nil;
+    if(context == NULL)
+        return nil;
     
     // Removed clipping code
     
@@ -364,10 +375,11 @@
     if(thumnailData){
         cell.thumbnail = [UIImage imageWithData:thumnailData];
         NSLog(@"Image size: %@", NSStringFromCGSize(cell.thumbnail.size));
+        [cell setNeedsDisplay];
     }else{
-        dispatch_async(kBgQueue, ^{
-            NSString * t_url = [object valueForKey:@"thumbnailUrl"];
-            if(t_url){
+        NSString * t_url = [object valueForKey:@"thumbnailUrl"];
+        if(t_url){
+            dispatch_async(kBgQueue, ^{
                 NSLog(@"thumbnail %@",t_url);
                 NSData *fetchedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:t_url]];
                 CGImageRef r = [self resizeImage:[UIImage imageWithData:fetchedData].CGImage];
@@ -377,12 +389,11 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [cell setNeedsDisplay];
                 });
-            }
-
-        });
+            });
+        }
         
     }
-    [cell setNeedsDisplay];
+    
             
     
 }
@@ -529,6 +540,10 @@
     
     searchResults = nil;
     return;
+}
+- (void)searchDisplayController:(UISearchDisplayController *)controller willUnloadSearchResultsTableView:(UITableView *)tableView
+{
+//    [self.tableView setContentOffset:CGPointMake(0,self.searchDisplayController.searchBar.frame.size.height)];
 }
 
 //- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller 
