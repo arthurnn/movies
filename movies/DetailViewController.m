@@ -22,6 +22,8 @@
 @synthesize detailItem = _detailItem;
 @synthesize scrollView = _scrollView;
 @synthesize poster = _poster;
+@synthesize watchedBtn = _watchedBtn;
+@synthesize wantedBtn = _wantedBtn;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
 @synthesize masterPopoverController = _masterPopoverController;
 
@@ -29,7 +31,7 @@
 
 - (void)setDetailItem:(id)newDetailItem
 {
-    if (_detailItem != newDetailItem || ![_detailItem valueForKey:@"thumbnailData"]) {
+    if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
         
         // Update the view.
@@ -47,6 +49,9 @@
     if (self.detailItem) {
         self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timestamp"] description];
         self.poster.image = [UIImage imageWithData:[self.detailItem valueForKey:@"thumbnailData"]];
+        
+        [_watchedBtn setHidden:[[self.detailItem valueForKey:@"watched"] boolValue]];
+        [_wantedBtn setHidden:[[self.detailItem valueForKey:@"watched"] boolValue]];
     }
 }
 
@@ -78,6 +83,8 @@
 {
     [self setPoster:nil];
     [self setScrollView:nil];
+    [self setWatchedBtn:nil];
+    [self setWantedBtn:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     self.detailDescriptionLabel = nil;

@@ -15,7 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *poster;
-
+@property (weak, nonatomic) IBOutlet UIButton *watchedBtn;
+@property (weak, nonatomic) IBOutlet UIButton *wantedBtn;
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
 - (IBAction)watchedTap:(id)sender;
