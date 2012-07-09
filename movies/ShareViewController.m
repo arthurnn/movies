@@ -35,6 +35,9 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bg.png"]];
+    
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelTap)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveTap)];
@@ -55,6 +58,11 @@
     [newManagedObject setValue:[self.detailItem valueForKey:@"thumbnailData"] forKey:@"thumbnailData"];
     [newManagedObject setValue:[NSNumber numberWithBool:YES] forKey:@"watched"];
     [DELEGATE saveContext];    
+    
+    [[DELEGATE navigationController] popToRootViewControllerAnimated:NO];
+    [[[[DELEGATE navigationController] topViewController] searchDisplayController] setActive:NO];
+    
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)viewDidUnload
